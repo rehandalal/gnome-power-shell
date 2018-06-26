@@ -1,0 +1,19 @@
+{
+  "description": "Adds a button to quickly toggle the visibility of the desktop.",
+  "extension-id": "gps-show-desktop-button",
+  "gettext-domain": "gps-show-desktop-button",
+  "localedir": "/usr/share/locale",
+  "name": "Toggle Desktop Button",
+  "settings-schema": "org.gnome.shell.extensions.toggledesktopbutton",
+  "shell-version": [
+    "3.10",
+    "3.12",
+    "3.14",
+    "3.16",
+    "3.15.91",
+    "3.15.92"
+  ],
+  "url": "https://github.com/rehandalal/gnome-power-shell",
+  "uuid": "toggle-desktop-button@gnome-power-shell.com",
+  "version": 1
+}

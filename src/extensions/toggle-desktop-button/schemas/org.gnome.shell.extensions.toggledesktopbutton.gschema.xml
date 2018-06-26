@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="toggle-desktop-button">
+  <schema path="/org/gnome/shell/extensions/toggledesktopbutton/" id="org.gnome.shell.extensions.toggledesktopbutton">
+    <key type="s" name="position">
+     	<default>'left'</default>
+    	<summary>Position on panel.</summary>
+      	<description>Sets the position of the extension on the panel. Possible values are: Left, Center, Right.</description>
+    </key>
+  </schema>
+</schemalist>

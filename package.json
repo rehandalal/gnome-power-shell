@@ -1,0 +1,30 @@
+{
+  "name": "gnome-power-shell",
+  "version": "1.0.0",
+  "description": "GNOME shell extensions for power users",
+  "main": "index.js",
+  "repository": "https://github.com/rehandalal/gnome-power-shell",
+  "author": "Rehan Dalal <rehandalal@gmail.com>",
+  "license": "MPL-2.0",
+  "private": false,
+  "scripts": {
+    "compile:schemas": "./bin/compile_schemas.sh",
+    "compile:webpack": "webpack --progress",
+    "build": "yarn compile:schemas; NODE_ENV=production yarn compile:webpack",
+    "build:dev": "NODE_ENV=development yarn compile:webpack",
+    "build:fresh": "rm -rf build; yarn build"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-transform-function-bind": "6.22.0",
+    "babel-preset-env": "1.7.0",
+    "copy-webpack-plugin": "4.5.1",
+    "css-loader": "0.28.11",
+    "less": "3.0.4",
+    "less-loader": "4.1.0",
+    "mini-css-extract-plugin": "0.4.0",
+    "webpack": "4.12.1",
+    "webpack-cli": "3.0.8"
+  }
+}
