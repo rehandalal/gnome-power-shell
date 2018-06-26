@@ -1,6 +1,4 @@
 import {
-  DESKTOP_HIDDEN,
-  DESKTOP_VISIBLE,
   POSITION_DEFAULT,
   GUID,
 } from './constants';
@@ -16,7 +14,6 @@ const St = imports.gi.St;
 export default class ToggleDesktopButton {
   constructor(options = {}) {
     this.position = options.position || POSITION_DEFAULT;
-    this.state = DESKTOP_HIDDEN;
     this.minimizedWindows = [];
 
     this.button = new PanelMenu.Button(0.0, null, true);
@@ -60,11 +57,8 @@ export default class ToggleDesktopButton {
   }
 
   isDesktopVisible() {
-    return this.state == DESKTOP_VISIBLE;
-  }
-
-  toggleState() {
-    this.state = this.state === DESKTOP_VISIBLE ? DESKTOP_HIDDEN : DESKTOP_VISIBLE;
+    const window = global.display.focus_window;
+    return window.get_window_type() === Meta.WindowType.DESKTOP;
   }
 
   getWindowToRestore() {
@@ -91,12 +85,9 @@ export default class ToggleDesktopButton {
   }
 
   toggleDesktopVisibility() {
-    const activeWorkspace = global.screen.get_active_workspace();
-    const windows = activeWorkspace.list_windows();
-
     if (this.isDesktopVisible()) {
-      windows.forEach(window => {
-        if (window.minimized && !this.minimizedWindows.includes(window)) {
+      this.minimizedWindows.forEach(window => {
+        if (window.minimized) {
           window.unminimize();
         }
       });
@@ -110,17 +101,16 @@ export default class ToggleDesktopButton {
       // Clear the list of minimized windows
       this.minimizedWindows = [];
     } else {
+      const activeWorkspace = global.screen.get_active_workspace();
+      const windows = activeWorkspace.list_windows();
+
+      this.minimizedWindows = [];
       windows.forEach(window => {
-        if (!window.skip_taskbar) {
-          if (window.minimized) {
-            this.minimizedWindows.push(window);
-          } else {
-            window.minimize();
-          }
+        if (!window.skip_taskbar && !window.minimized) {
+          this.minimizedWindows.push(window);
+          window.minimize();
         }
       });
     }
-
-    this.toggleState();
   }
 }
