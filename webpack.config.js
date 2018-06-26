@@ -30,6 +30,7 @@ const config = {
     library: 'ext',
     libraryTarget: 'var',
   },
+  mode: env,
   module: {
     rules: [
       {

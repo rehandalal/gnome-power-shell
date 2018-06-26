@@ -18,6 +18,7 @@ export default class ToggleDesktopButton {
 
     this.button = new PanelMenu.Button(0.0, null, true);
     this.button.actor.accessible_role = Atk.Role.TOGGLE_BUTTON;
+    this.button.actor.add_style_class_name('gps-toggle-desktop')
 
     this.icon = new St.Icon({
       icon_name: 'show-desktop-button',
